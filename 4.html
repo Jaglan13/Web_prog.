@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack Implementation</title>
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .stack-box {
+    width: 200px;
+    height: 300px;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    background-color: aqua;
+  }
+
+  .stack-element {
+    border-bottom: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    color: rgb(14, 14, 14);
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color:springgreen
+  }
+</style>  
+</head>
+<body>
+
+<div class="container">
+  <div class="stack-box" id="stack-box">
+    <!-- Stack elements will be displayed here -->
+  </div>
+  <button onclick="pushElement()">Push</button>
+  <button onclick="popElement()">Pop</button>
+  <button onclick="changeBackgroundColor()">Click Me</button>
+</div>
+
+<script>
+  const stack = [];
+
+  function pushElement() {
+    const inputValue = prompt('Enter element to push:');
+    if (inputValue !== null) {
+      stack.push(inputValue);
+      displayStack();
+    }
+  }
+
+  function popElement() {
+    if (stack.length === 0) {
+      alert('Stack underflow! No element to pop.');
+    } else {
+      const poppedItem = stack.pop();
+      alert('Popped element: ' + poppedItem);
+      displayStack();
+    }
+  }
+
+  function displayStack() {
+    const stackBox = document.getElementById('stack-box');
+    stackBox.innerHTML = '';
+    stack.forEach(element => {
+      const stackElement = document.createElement('div');
+      stackElement.classList.add('stack-element');
+      stackElement.textContent = element;
+      stackBox.appendChild(stackElement);
+    });
+  }
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function changeBackgroundColor() {
+    document.body.style.backgroundColor = getRandomColor();
+}
+</script>
+
+
+</body>
+</html>

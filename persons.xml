@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons>
+    <person>
+        <name>Akay</name>
+        <address>Bglr</address>
+        <email>akay@gmail.com</email>
+        <contact>123456789</contact>
+    </person>
+    <person>
+        <name>Dhanush C</name>
+        <address>Bglr</address>
+        <email>dhanush@gmail.com</email>
+        <contact>123456789</contact>
+    </person>
+    <person>
+        <name>Dipayan</name>
+        <address>Bglr</address>
+        <email>dipayan@gmail.com</email>
+        <contact>123456789</contact>
+    </person>
+</persons>

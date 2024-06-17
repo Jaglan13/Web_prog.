@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object Creation and DOM Events</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Object Creation and DOM Events</h1>
+
+  <div class="button-container">
+    <!-- Button with inline event handler -->
+    <button onclick="showAlert()">Click Me </button>
+
+    <!-- Button with event listener -->
+    <button id="myButton">Hover Me </button>
+  </div>
+
+  <div class="output" id="output">
+    <!-- Output will be displayed here -->
+  </div>
+</div>
+
+<script>
+  // Part a: Different ways of creating objects and nested objects
+  // Method 1: Object literal notation
+  const person1 = {
+    name: "John",
+    age: 30,
+    address: {
+      city: "New York",
+      country: "USA"
+    }
+  };
+
+  // Method 2: Object constructor
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.address = {
+      city: "Los Angeles",
+      country: "USA"
+    };
+  }
+
+  const person2 = new Person("Alice", 25);
+
+  // Logging objects
+  console.log("Method 1 - Object Literal:", person1);
+  console.log("Method 2 - Object Constructor:", person2);
+
+  // Part b: Different kinds of DOM events
+  // Method 1: Inline event handler
+  function showAlert() {
+    alert("Button clicked!");
+  }
+
+  // Method 2: Event listener
+  const button = document.getElementById("myButton");
+  button.addEventListener("mouseover", function() {
+    showOutput("Mouse over detected!");
+  });
+
+  // Function to show output
+  function showOutput(message) {
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = `<p>${message}</p>`;
+  }
+</script>
+
+</body>
+</html>

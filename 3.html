@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Countdown Timer</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+    body {
+        background-color: cadetblue;
+    }
+    .container {
+        text-align : center;
+        margin-top: 50px;
+        background-color: antiquewhite;
+    }
+    
+    h1 {
+        color: #333;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    #countdown {
+        font-size: 2rem;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #countdown div {
+        margin: 0 10px;
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    #countdown div span {
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 5px;
+    }
+
+    @media (max-width: 576px) {
+        #countdown {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Event Countdown Timer</h1>
+    <label for="eventDate">Select Event Date:</label>
+    <input type="date" id="eventDate">
+    <div id="countdown"></div>
+</div>
+
+<script>
+    // Function to update the countdown timer
+    function updateCountdown() {
+        // Get the selected event date
+        const selectedDate = document.getElementById('eventDate').value;
+
+        // If a date is selected
+        if (selectedDate) {
+            // Set the event date
+            const eventDate = new Date(selectedDate).getTime();
+
+            // Update the countdown every second
+            const countdown = setInterval(function() {
+                // Get current date and time
+                const now = new Date().getTime();
+
+                // Calculate the remaining time
+                const distance = eventDate - now;
+
+                // Calculate days, hours, minutes, and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the countdown
+                document.getElementById('countdown').innerHTML = `
+                    <div>${days} <span>Days</span></div>
+                    <div>${hours} <span>Hours</span></div>
+                    <div>${minutes} <span>Minutes</span></div>
+                    <div>${seconds} <span>Seconds</span></div>
+                `;
+
+                // If the countdown is over, display a message
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    document.getElementById('countdown').innerHTML = 'The event has already taken place!';
+                }
+            }, 1000);
+        } else {
+            // If no date is selected, clear the countdown
+            document.getElementById('countdown').innerHTML = '';
+        }
+    }
+    // Call the updateCountdown function when the date input changes
+    document.getElementById('eventDate').addEventListener('change', updateCountdown);
+</script>
+</body>
+</html>
